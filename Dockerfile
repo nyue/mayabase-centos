@@ -1,6 +1,6 @@
-FROM centos:centos6
+FROM centos:centos7
 
-MAINTAINER marcus@abstractfactory.io
+MAINTAINER yue.nicholas@gmail.com
 
 RUN yum update -y && yum install -y \
     nano \
@@ -27,7 +27,8 @@ RUN yum update -y && yum install -y \
 
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
-    pip install --target=/usr/local/lib/python2.6/site-packages \
+    pip install --target=/usr/local/lib/python2.7/site-packages \
+        pytest \
         nose \
         mock \
         unittest2
@@ -49,4 +50,4 @@ RUN echo "# Start Xvfb" >> ~/.bashrc && \
     echo "  do echo 'Waiting for Xvfb...'; sleep 1; done" >> ~/.bashrc
 
 # Expose Python libraries to Maya
-ENV PYTHONPATH=/usr/local/lib/python2.6/site-packages
+ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages
